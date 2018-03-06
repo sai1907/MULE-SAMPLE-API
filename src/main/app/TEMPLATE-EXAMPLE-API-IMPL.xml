@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+
+    <flow name="get:/someresource/subresource1:api-impl">
+        <json-logger:logger config-ref="Json_Logger__Logger_with_Anypoint_MQ_Configuration" doc:name="JSON: Start">
+            <json-logger:logger-json message="#[payload]"/>
+        </json-logger:logger>
+        <set-payload value="#['{&quot;key&quot;:&quot;from backend&quot;}']" doc:name="MOCK: Backend" mimeType="application/json"/>
+        <json-logger:logger config-ref="Json_Logger__Logger_with_Anypoint_MQ_Configuration" doc:name="JSON: Backend response">
+            <json-logger:logger-json tracePoint="AFTER_API_OR_BACKEND" message="#[payload]"/>
+        </json-logger:logger>
+        <set-payload value="#['{&quot;key&quot;:&quot;hello world&quot;}']" mimeType="application/json" doc:name="MOCK: Transform"/>
+        <json-logger:logger config-ref="Json_Logger__Logger_with_Anypoint_MQ_Configuration" doc:name="JSON: End">
+            <json-logger:logger-json tracePoint="END" message="#[payload]"/>
+        </json-logger:logger>
+    </flow>
+
+</mule>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns:context="http://www.springframework.org/schema/context" xmlns:mock="http://www.mulesoft.org/schema/mule/mock" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/mock http://www.mulesoft.org/schema/mule/mock/current/mule-mock.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+    <munit:config name="munit" doc:name="MUnit configuration" />
+    <context:property-placeholder location="classpath:config.munit.properties"/>
+    <spring:beans>
+        <spring:import resource="classpath:TEMPLATE-EXAMPLE-API-IMPL.xml"/>
+    </spring:beans>
+    <json-logger:json-logger-config name="Json_Logger__Logger_with_Anypoint_MQ_Configuration" doc:name="JSON Logger: Logger Configuration"/>
+    <munit:test name="TEMPLATE-EXAMPLE-API-IMPL-test-suite-get:/someresource/subresource1:api-implTest" description="Test">
+        <flow-ref name="get:/someresource/subresource1:api-impl" doc:name="Flow-ref to get:/someresource/subresource1:api-impl"/>
+        <mock:verify-call messageProcessor=".*:.*" times="1" doc:name="Verify Call: Start logger">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['JSON: Start']"/>
+            </mock:with-attributes>
+        </mock:verify-call>
+        <mock:verify-call messageProcessor=".*:.*" atLeast="1" doc:name="Verify Call: Backend response logger">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['JSON: Backend response']"/>
+            </mock:with-attributes>
+        </mock:verify-call>
+        <mock:verify-call messageProcessor=".*:.*" times="1" doc:name="Verify Call: End logger">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['JSON: End']"/>
+            </mock:with-attributes>
+        </mock:verify-call>
+    </munit:test>
+</mule>

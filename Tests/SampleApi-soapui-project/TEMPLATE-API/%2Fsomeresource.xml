@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/someresource" path="/someresource" id="92fa541f-6154-4a8e-a30a-bb78bf2bb07d" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:description xsi:nil="true"/>
+  <con:settings>
+    <con:setting id="92fa541f-6154-4a8e-a30a-bb78bf2bb07dfileName">%2Fsomeresource</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:resource name="/subresource1" path="/subresource1" id="e4d5dc45-61a3-4eec-96aa-36bbec567981">
+    <con:description xsi:nil="true"/>
+    <con:settings/>
+    <con:parameters/>
+    <con:method name="get" id="8df158b0-2b6b-45cf-adac-afe8d9311f53" method="GET">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>somequeryparam?</con:name>
+          <con:style>QUERY</con:style>
+          <con:default xsi:nil="true"/>
+          <con:description xsi:nil="true"/>
+        </con:parameter>
+      </con:parameters>
+      <con:representation type="RESPONSE">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>200</con:status>
+        <con:params/>
+        <con:description xsi:nil="true"/>
+        <con:sampleContent xsi:nil="true"/>
+      </con:representation>
+      <con:representation type="RESPONSE">
+        <con:mediaType xsi:nil="true"/>
+        <con:status>0</con:status>
+        <con:params/>
+        <con:element>data</con:element>
+      </con:representation>
+      <con:representation type="RESPONSE">
+        <con:mediaType>application/json;charset=UTF-8</con:mediaType>
+        <con:status>200</con:status>
+        <con:params/>
+        <con:element xmlns:sub="http://0.0.0.0/api/someresource/subresource1">sub:Response</con:element>
+      </con:representation>
+      <con:representation type="FAULT">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>404</con:status>
+        <con:params/>
+        <con:element xmlns:sub="http://0.0.0.0/api/someresource/subresource1">sub:Fault</con:element>
+      </con:representation>
+      <con:representation type="RESPONSE">
+        <con:mediaType xsi:nil="true"/>
+        <con:status>0</con:status>
+        <con:params/>
+        <con:element>data</con:element>
+      </con:representation>
+      <con:request name="Request 1" id="835af867-5769-421b-b6a5-828ccde89c72" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://api-template-api-impl-dev.cloudhub.io</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://0.0.0.0/api/someresource/subresource1</con:originalUri>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:request>
+    </con:method>
+  </con:resource>
+  <con:resource name="/subresource1-Negative" path="/invalidResource" id="e4d5dc45-61a3-4eec-96aa-36bbec567981">
+    <con:description xsi:nil="true"/>
+    <con:settings/>
+    <con:parameters/>
+    <con:method name="get" id="8df158b0-2b6b-45cf-adac-afe8d9311f53" method="GET">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>somethingInvalid?</con:name>
+          <con:value/>
+          <con:style>QUERY</con:style>
+          <con:default/>
+          <con:description xsi:nil="true"/>
+        </con:parameter>
+      </con:parameters>
+      <con:representation type="RESPONSE">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>200</con:status>
+        <con:params/>
+        <con:description xsi:nil="true"/>
+        <con:sampleContent xsi:nil="true"/>
+      </con:representation>
+      <con:representation type="RESPONSE">
+        <con:mediaType xsi:nil="true"/>
+        <con:status>0</con:status>
+        <con:params/>
+        <con:element>data</con:element>
+      </con:representation>
+      <con:representation type="RESPONSE">
+        <con:mediaType>application/json;charset=UTF-8</con:mediaType>
+        <con:status>200</con:status>
+        <con:params/>
+        <con:element xmlns:sub="http://0.0.0.0/api/someresource/subresource1">sub:Response</con:element>
+      </con:representation>
+      <con:representation type="FAULT">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>404</con:status>
+        <con:params/>
+        <con:element xmlns:sub="http://0.0.0.0/api/someresource/subresource1">sub:Fault</con:element>
+      </con:representation>
+      <con:request name="Request 1" id="835af867-5769-421b-b6a5-828ccde89c72" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://api-template-api-impl-dev.cloudhub.io</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://0.0.0.0/api/someresource/subresource1</con:originalUri>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <entry key="somethingInvalid?" value="" xmlns="http://eviware.com/soapui/config"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>somethingInvalid?</con:entry>
+        </con:parameterOrder>
+      </con:request>
+    </con:method>
+  </con:resource>
+</con:resource>

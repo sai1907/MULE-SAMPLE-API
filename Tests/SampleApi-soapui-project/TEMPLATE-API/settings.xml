@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xsi:type="con:RestService" id="e376b247-438f-4858-a48d-c53855b0e35c" wadlVersion="http://wadl.dev.java.net/2009/02" name="TEMPLATE API" type="rest" basePath="/api" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:description>TEMPLATE API</con:description>
+  <con:settings>
+    <con:setting id="e376b247-438f-4858-a48d-c53855b0e35cfileName">TEMPLATE-API</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart=""/>
+  <con:endpoints>
+    <con:endpoint>http://0.0.0.0:8081</con:endpoint>
+    <con:endpoint>http://api-template-api-impl-dev.cloudhub.io</con:endpoint>
+  </con:endpoints>
+</con:interface>
